@@ -32,7 +32,15 @@ export class VehicleTypeComponent implements OnInit {
     );
   }
 
-  onEdit = (entity_id: any) => this.router.navigate(['/vehicle-type-create'], { queryParams: { entity_id: entity_id} });
+  public onEdit(row:any)
+  {
+    debugger;
+    this.router.navigate(
+      ['/vehicle-type-create'],
+      { queryParams: { id: row.id,vt:row.vehicle_type} }
+    );
+  }
+  // onEdit = (entity_id: any) => this.router.navigate(['/vehicle-type-create'], { queryParams: { entity_id: entity_id} });
 
   onDelete(entity_id: any) {
     Swal.fire({ text: 'Are you sure you want to delete?', icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes', cancelButtonText: 'No' })

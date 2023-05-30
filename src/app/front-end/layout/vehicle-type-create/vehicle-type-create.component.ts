@@ -29,19 +29,31 @@ export class VehicleTypeCreateComponent implements OnInit {
       this.UserDetail=JSON.parse(localStorage.getItem('currentUser') || '{}')
       this.contact_form = this.formBuilder.group({
         vehicle_type: ['',[Validators.required]],
+        id:['']
     })
   }
-    ngOnInit(): void {
-    let id = null;
-    var vehicle_type =undefined;
-    this.route.queryParamMap.subscribe((params) => {
-      id = params.get('entity_id');
-      vehicle_type = params.get('vehicle_type')?.toString();
+  //   ngOnInit(): void {
+  //   let id = null;
+  //   var vehicle_type =undefined;
+  //   this.route.queryParamMap.subscribe((params) => {
+  //     id = params.get('entity_id');
+  //     vehicle_type = params.get('vehicle_type')?.toString();
+  //   });
+  //   if (id != null) { this.contact_form.patchValue({
+  //     vehicle_type:  vehicle_type
+  //   }); this.tbl_vehicle_type.id= id; 
+  // }
+  // }
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if(params['id'] != null)
+      this.contact_form.patchValue({
+        vehicle_type: params['vt'],
+        id:params['id'],
+      });
+      
     });
-    if (id != null) { this.contact_form.patchValue({
-      vehicle_type:  vehicle_type
-    }); this.tbl_vehicle_type.id= id; 
-  }
+    
   }
   toggleNavDrawer(isDrawerOpen: boolean) {
   
