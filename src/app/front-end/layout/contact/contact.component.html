@@ -1,0 +1,113 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        Contact
+                    <!-- <img src="{{base.adminAppUrl + '/uploads/apps/logo.png'}}" title="logo" class="text-center h-1-3rem mt-3"> -->
+                    </h4>
+                </div>
+                <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)">
+                </app-sidebar>
+            </div>
+        </div>
+        <section class="pt-3 pb-2">
+            <div class="col-md-10 col-12 justify-content-md-end float-right ">
+                <a class="btn  btn-success  float-right text-white " [routerLink]="['/create-contact']"
+                    [routerLinkActive]="['active']">
+                    <img class="" src="../../.././../assets/img/plus icon.svg" style="height:20px;" />
+                </a>
+                <a  csvLink [data]="tbl_login" class="btn btn-light text-dark float-right mr-1" rippleEffect>
+                    <img src="../../.././../assets/img/sheet.svg" alt="" style="height:20px;"></a>
+                <a class="btn  float-right btn-light  mr-1 ml-1" (click)="openPDF()">
+                    <img class=" mr-0 mr-sm-1" src="../../.././../assets/img/pdf.svg" alt="" style="height:20px;"></a>
+                <label class="d-flex align-items-center float-right pr-0">
+                    <input type="search" placeholder="Search" class="form-control"
+                    (keyup)="filterUpdate($event)"/></label>
+            </div>
+            <div class="ml-0 pl-0 col-md-2 d-none-md px-3">
+                <label class="d-flex align-items-center">Show&nbsp;
+                    <select class="form-control" style="width:auto" [(ngModel)]="basicSelectedOption">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    &nbsp;entries</label>
+            </div>
+            <div class="px-3">
+            <ngx-datatable id="htmlData" [rows]="tbl_login"
+                class="no-detail-row  bootstrap thead-light expandable  table table-bordered" [limit]="50"
+                [columnMode]="ColumnMode.force" [headerHeight]="50" [rowHeight]="'auto'" [footerHeight]="50" [scrollbarH]="true"
+                [virtualization]="false" [limit]="basicSelectedOption">
+                <ngx-datatable-column name="#"  [width]="40" [sortable]="false" [canAutoResize]="false" [draggable]="true"
+                [resizeable]="false">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                  {{rowIndex+1}}
+                </ng-template>
+              </ngx-datatable-column>
+                <ngx-datatable-column name="mobile" prop="mobile"></ngx-datatable-column>
+                <ngx-datatable-column name="name" prop="name"></ngx-datatable-column>
+                <ngx-datatable-column name="email" prop="email" ></ngx-datatable-column>
+                <ngx-datatable-column name="address" prop="address" ></ngx-datatable-column>
+                <ngx-datatable-column name="city" prop="city"></ngx-datatable-column>
+                <ngx-datatable-column name="state" prop="state"></ngx-datatable-column>
+
+                
+                <ngx-datatable-column name="Actions" prop="id" [sortable]="false"[width]="60">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <a role="button" class="ml-3" (click)="delete_contact(row.mobile)"> <i class="feather-trash text-danger"></i></a>
+                        
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+            </div>
+        </section>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+
+<!-- <div class="row">
+                <div class="col-12 mb-1">
+                    <div class="modal-header mb-3">
+                        <h5 class="modal-title ">Contacts</h5>
+                        <div class="float-right">
+                            <a class="btn btn-primary btn-sm float-right text-white" routerLink="/create-contact"  routerLinkActive="active">
+                                <i class="feather-plus-circle mr-0 mr-sm-1"></i>
+                                Add New</a>
+            
+                            <a csvLink [data]="tbl_login" class="btn btn-outline-secondary btn-sm text-dark float-right mr-1"
+                                rippleEffect>Export CSV</a>
+            
+                            <a class="btn btn-outline-secondary float-right btn-sm  mr-1" (click)="openPDF()">PDF</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-50">
+                </div>
+                <div class="col-md-6 col-12" style="width: auto">
+                    <div class="d-flex justify-content-between align-items-center m-1">
+                        <label class="d-flex align-items-center">Show
+                            <select class="form-control mx-25" [(ngModel)]="basicSelectedOption">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            entries</label>
+            
+                    </div>
+                </div>
+                <div class="col-md-6 col-12 d-flex justify-content-md-end">
+                    <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0">
+                        <label class="d-flex align-items-center ">Search <input type="search" placeholder="Search"
+                                class="form-control ml-25 " (keyup)="filterUpdate($event)" /></label>
+                    </div>
+                </div>
+            </div> -->

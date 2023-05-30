@@ -1,0 +1,126 @@
+<h5>contact us</h5>
+<a class="text-danger font-weight-bold ml-auto" [routerLink]="'/home'"><i
+    class="feather-chevron-left"></i> Back</a>
+<!-- <div class="osahan-contact">
+    <div class="bg-primary ">
+        <div class="title d-flex align-items-center px-3 py-3 ">
+            <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+            <h4 class="font-weight-bold m-0 text-white pl-5">Contact Us</h4>
+            tttttt
+            <a class="text-white font-weight-bold ml-auto" [routerLink]="'/Service'"><i
+                class="feather-chevron-left"></i> Back</a>
+            <a class="text-white font-weight-bold ml-auto" (click)="backToPrevious()">
+                <i class="feather-chevron-left"></i> Back</a>
+
+        </div>
+        <ng-container *ngIf="current_role == 'Customer' else servie_provider">
+            <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)"></app-sidebar>
+        </ng-container>
+        <ng-template #servie_provider>
+            <app-header [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)"></app-header>
+        </ng-template>
+    </div>
+
+    <div class="bg-light mb-4 p-3 osahan-cart-item">
+        <div class="osahan-cart-item-profile bg-white rounded shadow p-3 ">
+            <div class="flex-column">
+                <p class="text-muted">Don't hesitate to send us your request and our consultants will get back to you to
+                    discuss how we can help best.<br />We process requests 24/7.</p>
+                <form [formGroup]="form_group" (ngSubmit)="contact_us_insert()">
+                    <div class="form-group">
+                        <label for="name" class="small font-weight-bold">Your Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name"
+                            placeholder="Name">
+                            <span class="text-danger"
+                            *ngIf="(form_controls.name.touched || submitted ) && form_controls.name.errors?.required">
+                          Name Required</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile" class="small font-weight-bold">Mobile Number</label>
+                        <input type="number" class="form-control spin-button"  id="mobile" formControlName="mobile" maxlength="10"
+                            placeholder="Mobile Number">
+                            <span class="text-danger"
+                            *ngIf="(form_controls.mobile.touched || submitted ) && form_controls.mobile.errors?.required">
+                            Mobile Number Required</span>
+                    <span class="text-danger" *ngIf="form_controls.mobile.touched  && form_controls.mobile.errors?.pattern">Enter 10 digit valid mobile number</span>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="small font-weight-bold">Email Address</label>
+                        <input type="email" class="form-control" id="email" formControlName="email"
+                            placeholder="Email">
+                    <span class="text-danger" *ngIf="form_controls.email.touched  && form_controls.email.errors?.pattern">Enter the  valid Email</span>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="small font-weight-bold">HOW CAN WE HELP
+                            YOU?</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1"  formControlName="message"
+                            placeholder="message" rows="3"></textarea>
+                             <span class="text-danger"
+                            *ngIf="(form_controls.message.touched || submitted ) && form_controls.message.errors?.required">
+                            message Required</span>
+                    </div>
+                   
+                        <div class="form-group ">
+                            <a class="links " type="" (click)="file.click()" style="border: none; position: relative;">
+                            <div class="border rounded  px-3 pt-3 pb-3" style="text-align:center">
+                             
+                                    <i class="feather feather-upload-cloud " style="font-size:23px;position:relative;top:4px;"></i>
+                                <label class="medium ml-2">Upload</label>
+                                <p>{{files}}</p>
+                            </div> 
+                          </a> 
+                            <input class="form-control" name="file" id="file" type="file" formControlName="file"
+                            accept="image/png, image/gif, image/jpeg,text/plain,application/pdf" #file
+                            (change)="fileChangeEvent($event)" style="display:none ;">
+
+                            <span class="text-danger">{{error_msg}}</span>
+                        </div>
+                    <button class="btn btn-primary btn-block" [disabled]="!form_group.valid">SUBMIT</button>
+                </form>
+
+                <div class="row pt-3 ">
+                    <div class="col-md-6 bg-white cart_margin">
+                        <div class="rounded osahan-cart-item-profile  p-3 bg-light">
+                           t <div class="font-weight-bold" style="text-align: center;">Contact Us</div>
+                            <h5 class="font-weight-bold" style="text-align: center;">Contact Us</h5>
+                            t<h3 class="office_addr_country">Raipur</h3>
+                            <div class="office_addr_out">
+                                <div class="office_addr_in">
+                                    <p class="" style="text-align: center;">104/58, Behind Jha Institute, At Maha
+                                        Kaushal Vikash Yojna Samiti Building, Rohanipuram, DDU
+                                        Nagar, Raipur(C.G.), India, 492001</p>
+                                </div>
+                            </div>
+                            <div class="office_addr_phone mb-0" style="text-align: center;">
+                                <a href="tel:+91 9907969727">+91 8517969727</a>
+                            </div>
+                            <div class="office_addr_email mt-0" style="text-align: center;">
+                                <a href="mailto:email@shivaminfosoft.in?Subject=Shivam%20Infosoft"
+                                    target="_top"><span>support@Sevagudi.com</span></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 map_canvas  ">
+                        <div style="height: 160px;" class="rounded">
+                            <agm-map [latitude]="21.2338196" [longitude]="81.5997603" style="height: 100%;" [zoom]="zoom">
+                                <agm-marker [latitude]="21.2338196" [longitude]="81.5997603" [markerDraggable]="true"
+                                    [animation]="'BOUNCE'"></agm-marker>
+                            tt    <agm-direction [origin]="origin" [destination]="destination" [renderOptions]="renderOptions"
+                        [markerOptions]="markerOptions"> 
+                    </agm-direction>
+                            </agm-map>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->

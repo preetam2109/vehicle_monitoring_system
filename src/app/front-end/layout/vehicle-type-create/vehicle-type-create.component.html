@@ -1,0 +1,48 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        Create Vehicle Type
+                    </h4>
+                    <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)">
+                    </app-sidebar>
+                </div>
+            </div>
+        </div>
+        <div class="pl-3 pr-3">
+            <div class="bg-white rounded shadow mb-0 profile-details ">
+                <div class="m-3 pb-2 pt-2">
+                    <form [formGroup]="contact_form" (ngSubmit)="on_submit()">
+                        <div class="form-row">
+                            <div class="col-md-6 form-group"><label
+                                    class="form-label font-weight-bold small">Vehicle Type</label>
+                                <input placeholder="Enter vehicle type" type="text" class="form-control" formControlName="vehicle_type">
+                                <span class="text-danger"
+                                    *ngIf="(formcontrols.vehicle_type.touched) && formcontrols.vehicle_type.errors?.required">*Vehicle Type
+                                    Required</span>
+                            </div>
+                        </div>
+                        <div class="form-row ">
+                            <div class="col-6 form-group">
+                                <button type="submit" class="btn btn-success w-100" [disabled]="!contact_form.valid"><i class="feather-save"></i>
+                                    Save</button>
+                            </div>
+                            <div class="col-6 form-group">
+                                <a class="btn btn-primary w-100" routerLink="/vehicle-type" routerLinkActive="active">
+                                    <i class="feather-list"></i>
+                                    Back To List</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

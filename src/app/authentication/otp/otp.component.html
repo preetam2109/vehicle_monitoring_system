@@ -1,0 +1,89 @@
+<div class="osahan-verification">
+    <div class="p-3 border-bottom">
+        <a class="text-primary"  (click)="back()"><i
+                class="feather-chevron-left"></i> Back</a>
+        <!-- <a class="text-primary" [routerLink]="['/registration']" [routerLinkActive]="'active'"><i
+                class="feather-chevron-left"></i> Back</a> -->
+    </div>
+    <form [formGroup]="otpForm" (ngSubmit)="otpValidate()">
+        <div class="verify_number p-4">
+            <h2 class="mb-3">Verify your<br>phone number</h2>
+            <h6 class="text-black-50">Enter your OTP code here</h6>
+            <div class="row my-5 mx-0" style="font-size: medium;">
+                           
+                <div class="col pr-1 pl-0">
+                    <!-- (keydown)="checkLength1($event, inputNumber)" -->
+                    <input #digit1 type="number"  name="otp1" id="digit-1" autofocus data-next="digit-2"
+                        formControlName="otp1" (keyup)="isOTP(digit1, $event, digit2, 1)"
+                        autocomplete="off" class="form-control form-control-lg spin-button" maxlength="1"   size="1" 
+                         #inputNumber >
+                </div>
+                <div class="col px-2">
+                    <input #digit2 type="number" name="otp2" id="digit-2" data-next="digit-3"
+                        autocomplete="off" data-previous="digit-1" formControlName="otp2"
+                        (keyup)="isOTP(digit1, $event, digit3, 2)" class="form-control form-control-lg spin-button"
+                        maxLength="1" size="1"  #inputNumber>
+                </div>
+                <div class="col px-2">
+                    <input #digit3 type="number" name="otp3" id="digit-3" data-next="digit-4"
+                        autocomplete="off" data-previous="digit-2" formControlName="otp3"
+                        (keyup)="isOTP(digit2, $event, digit4, 3)" class="form-control form-control-lg spin-button"
+                        maxLength="1" size="1"  #inputNumber>
+                </div>
+                <div class="col px-2">
+                    <input #digit4 type="number" name="otp4" id="digit-4" data-next="digit-5"
+                        autocomplete="off" data-previous="digit-3" formControlName="otp4"
+                        (keyup)="isOTP(digit3, $event,digit5, 4)" class="form-control form-control-lg spin-button"
+                        maxLength="1" size="1"#inputNumber>
+                </div>
+                <div class="col px-2">
+                    <input #digit5 type="number" name="otp5" id="digit-5" data-next="digit-6"
+                        autocomplete="off" data-previous="digit-4" formControlName="otp5"
+                        (keyup)="isOTP(digit4, $event,digit6, 5)" class="form-control form-control-lg spin-button"
+                        maxLength="1" size="1" #inputNumber>
+                </div>
+                <div class="col px-2 pr-0">
+                    <input #digit6 type="number" name="otp6" id="digit-6" data-previous="digit-5"
+                        autocomplete="off" formControlName="otp6"
+                        (keyup)="isOTP(digit5, $event, '', 6)" class="form-control form-control-lg spin-button"
+                        size="1" maxLength="1"  #inputNumber>
+                </div>
+            </div>
+
+
+
+
+            <!-- <div class="row my-5 mx-0">
+                <div class="col pr-1 pl-0">
+                    <input type="text" name="otp1" id="digit-1" data-next="digit-2" formControlName="otp1"
+                        (keyup)="isOTP($event)" class="form-control form-control-lg" maxLength="1">
+                </div>
+                <div class="col px-2">
+                    <input type="text" name="otp2" id="digit-2" data-next="digit-3" data-previous="digit-1"
+                        formControlName="otp2" (keyup)="isOTP($event)" class="form-control form-control-lg"
+                        maxLength="1">
+                </div>
+                <div class="col px-2">
+                    <input type="text" name="otp3" id="digit-3" data-next="digit-4" data-previous="digit-2"
+                        formControlName="otp3" (keyup)="isOTP($event)" class="form-control form-control-lg"
+                        maxLength="1">
+                </div>
+                <div class="col pl-1 pr-0">
+                    <input type="text" name="otp4" id="digit-4" data-next="digit-5" data-previous="digit-3"
+                        formControlName="otp4" (keyup)="isOTP($event)" class="form-control form-control-lg"
+                        maxLength="1">
+                </div>
+                <div class="col pl-1 pr-0">
+                    <input type="text" name="otp5" id="digit-5" data-next="digit-6" data-previous="digit-4"
+                        formControlName="otp5" (keyup)="isOTP($event)" class="form-control form-control-lg"
+                        maxLength="1">
+                </div>
+                <div class="col pl-1 pr-0">
+                    <input type="text" name="otp6" id="digit-6" data-previous="digit-5" formControlName="otp6"
+                        (keyup)="isOTP($event)" class="form-control form-control-lg" maxLength="1">
+                </div>
+            </div> -->
+            <button class="btn btn-lg btn-primary btn-block" [disabled]="!otpForm.valid">Verify Now</button>
+        </div>
+    </form>
+</div>

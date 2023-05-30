@@ -1,0 +1,124 @@
+<!-- <div class="osahan-forgot">
+    <div class="bg-light border-bottom p-3">
+        <a class="text-primary" [routerLink]="['/login']" [routerLinkActive]="'active'"><i class="feather-chevron-left"></i> Back</a>
+    </div>
+    <div class="p-4">
+        <h2>Reset password</h2>
+        <h2>Login with OTP</h2>
+        <p>Enter your Email/Mobile Number below and we'll send you an email in which your <b>One Time Paasword(OTP)</b> will be. for Insert  your OTP
+        </p>
+        <p>Enter your Email/Mobile Number below and we'll send you an email in which your <b>One Time Paasword(OTP)</b> will be. for Reset your password
+        </p>
+        <form [formGroup]="logginWithOTPForm" (ngSubmit)="loginWithOtp()" class="mt-5 mb-4">
+            <div class="form-group">
+                <label>Email/Mobile</label>
+                <input type="text" class="form-control" formControlName="email" id="exampleInputEmail1" placeholder="Enter your email/mobile number" aria-describedby="emailHelp">
+                <span class="text-danger" *ngIf="(f.email.touched || submitted) && f.email.errors?.required">Required Input</span>
+            </div>
+
+            <div class="form-group">
+                <label>Email/Mobile</label>
+                <div class="form-group-sm mb-2 input-group">
+                    <input type="text" class="form-control" name="email" formControlName="email" id="email" placeholder="Enter your email/mobile number" aria-describedby="emailHelp">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary" [disabled]="ForFormExpand === true && time >0" (click)="getOTPForLogin(60)">
+                            <span *ngIf="ForFormExpand === false; else no">Get OTP</span>
+                            <ng-template #no>
+                                <span>Resend OTP<span *ngIf="resendOTP === true"> in {{display}}</span></span>
+                            </ng-template>
+                        </button>  
+                        
+                        <button type="button" class="btn btn-success" *ngIf="time >=0" (click)="getOTPForLogin(60)">Resend OTP<span *ngIf="time == 0">in {{display}}</span></button>    
+                    </div>
+                    <span style="width: 50px" *ngIf="display != null">{{display}}</span>  
+                </div>
+                <span class="text-danger" *ngIf="(f.email.touched || submitted) && f.email.errors?.required">Required Input</span>
+                <span class="text-danger" *ngIf="f.email.errors?.pattern">Enter Valid Email/Mobile Number</span>
+            </div>
+            <div class="form-group" *ngIf="ForFormExpand === true">
+                <label>Email/Mobile</label>
+                <input type="text" class="form-control" name="otp" formControlName="otp" placeholder="Enter your OTP Here" aria-describedby="emailHelp">
+                <span class="text-danger" *ngIf="(f.otp.touched || submitted) && f.otp.errors?.required">Required Input</span>
+                <span class="text-danger" *ngIf="f.otp.errors?.minlength">Please Fill The 6 Digit OTP</span>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" *ngIf="ForFormExpand === true">LogIn</button>
+        </form>
+    </div>
+</div> -->
+
+
+<div class="coverImage">
+    <div class="login-page">
+        <div class="vh-100 p-4">
+            <div class="text-center pb-4">
+                <img src="{{base.adminAppUrl + '/uploads/apps/logo.png'}}" title="logo"
+                class="text-center h-1-3rem mt-3 mb-3" style="height: auto; width: auto;">
+                <br/>
+            </div>
+
+            <h6 class="text-white my-0 mt-4">Welcome to Insta Messenger </h6>
+            <p class="text-white text-50 mt-2">Please sign-in to continue</p>
+                <form [formGroup]="logginWithOTPForm" (ngSubmit)="loginWithOtp()" class="mt-5 mb-4">
+                    <!-- <div class="form-group">
+                        <label class="text-white">Mobile Number</label>
+                        <input type="number" class="form-control spin-button" formControlName="email" id="exampleInputEmail1" placeholder="Enter Mobile number" aria-describedby="emailHelp">
+                        <span class="text-danger" *ngIf="(f.email.touched || submitted) && f.email.errors?.required">Required Input</span>
+                    </div> -->
+        
+                    <div class="form-group">
+                        <label class="text-white">Mobile Number</label>
+                        <div class="form-group-sm mb-2 input-group" >
+                            <input type="tel" class="form-control" name="email"  formControlName="email" id="email" placeholder="Enter mobile number" autofocus
+                             autocomplete="off" style="border-radius:unset ;" (keypress)="base.isMobileNumber($event)" (click)="customEmailErrorMessage=false" maxlength="10">
+                            <div class="input-group-append">
+                                <button type="button" class="btn " [disabled]="ForFormExpand === true && time >0" (click)="getOTPForLogin(60)" style="color: #fff;
+                                    background-color: #218838;
+                                    border-color: #1e7e34">
+                                    <span *ngIf="ForFormExpand === false; else no">Get OTP</span>
+                                    <ng-template #no>
+                                        <span>Resend OTP<span *ngIf="resendOTP === true"> in {{display}}</span></span>
+                                    </ng-template>
+                                </button>  
+                                
+                                <!-- <button type="button" class="btn btn-success" *ngIf="time >=0" (click)="getOTPForLogin(60)">Resend OTP<span *ngIf="time == 0">in {{display}}</span></button>     -->
+                            </div>
+                        </div>
+                        <span class="text-danger" *ngIf="(f.email.touched || submitted) && f.email.errors?.required">Mobile number is required</span>
+                        <span class="text-danger" *ngIf="f.email.errors?.pattern">Enter 10 digit valid mobile number</span>
+                        <span class="text-danger" *ngIf="customEmailErrorMessage">{{message}}</span>
+                    </div>
+                    <div class="form-group" *ngIf="ForFormExpand === true">
+                        <!-- <label>Email/Mobile</label> -->
+                        <input type="tel" class="form-control" name="otp" formControlName="otp" autocomplete="off" 
+                        placeholder="Enter your OTP here" aria-describedby="emailHelp" (keypress)="base.isMobileNumber($event)" maxlength="6" (click)="customOTPErrorMessage=false">
+                        <span class="text-danger" *ngIf="(f.otp.touched || submitted) && f.otp.errors?.required">OTP is required</span>
+                        <span class="text-danger" *ngIf="f.otp.errors?.minlength">Please enter 6 digit OTP here</span>
+                        <span class="text-danger" *ngIf="customOTPErrorMessage">{{otpMessage}}</span>
+                    </div>
+
+                    <button class="btn  btn-lg btn-block" *ngIf="ForFormExpand === true" style="color: #fff;
+                    background-color: #218838;
+                    border-color: #1e7e34">Login</button>
+                </form>
+            <!-- </div> -->
+            <div class="text-center">
+                <!-- <a [routerLink]="['/login-with-otp']" [queryParams]="{ p: 2}" [routerLinkActive]="'active'"
+                    class="text-decoration-none text-white">
+                    Login with OTP
+                </a> -->
+                <!-- <br> -->
+                <!-- <br> -->
+                <a [routerLink]="['/login']" [routerLinkActive]="'active'" class=" text-white">
+                   Login with password
+                </a>
+                <br/><br/>
+                <a [routerLink]="['/registration']" [routerLinkActive]="'active'" class="text-white">
+                    Don't have an account? Sign up
+                </a><br/><br/>
+                <!-- <span class="font-weight-bold text-white">An initiative of RIPA Temri</span> -->
+                <!-- <a  class="btn text-white" (click)="loginWithOtp()">test
+                </a> -->
+            </div>
+        </div>
+    </div>
+</div>

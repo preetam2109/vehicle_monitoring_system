@@ -1,0 +1,87 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        Create Template
+                        <!-- <img src="{{base.adminAppUrl + '/uploads/apps/logo.png'}}" title="logo" class="text-center h-1-3rem mt-3"> -->
+                    </h4>
+                    <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)">
+                    </app-sidebar>
+                </div>
+            </div>
+        </div>
+       <div class="pl-3 pr-3">
+            <div class="bg-white rounded shadow mb-0 profile-details ">
+                    <!-- <div class="modal-header">
+                        <h5 class="modal-title">Create Template</h5>
+                    </div> -->
+                    <div class="m-3 pb-2 pt-2">
+                        <form [formGroup]="contact_form" (ngSubmit)="on_submit()">
+                            <div class="form-row">
+                                <!-- <div class="col-md-6 form-group">
+                                    <label class="form-label font-weight-bold ">*Role</label>
+                                    <select class="custom-select form-control" placeholder="select"
+                                        formControlName="role_id">
+                                        <option *ngFor="let role of mst_role" [value]="role.role_id">{{role.role}}</option>
+                                    </select>
+                                    <span class="text-danger"
+                                        *ngIf="(formcontrols.role_id.touched || submitted) && formcontrols.role_id.errors?.required">*Role
+                                        is required</span>
+                                </div> -->
+
+                                <div class="col-md-6 form-group">
+                                    <label class="form-label font-weight-bold small">Header</label>
+                                    <select class="custom-select form-control" placeholder="Select Role" formControlName="header_id">
+                    
+                                        <option *ngFor="let header_list of header_list" [value]=header_list.id>{{header_list.header}}
+                                        </option>
+                                        <span class="text-danger"
+                                            *ngIf="(formcontrols.header_id.touched || submitted ) && formcontrols.header_id.errors?.required">*
+                                            Header is Required</span>
+                                    </select>
+                    
+                    
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label class="form-label font-weight-bold small">Template</label>
+                                    <input placeholder="Template" type="text" class="form-control" formControlName="template">
+                                    <span class="text-danger"
+                                        *ngIf="(formcontrols.template.touched) && formcontrols.template.errors?.required">*
+                                        Template is Required</span>
+                                </div>
+                           
+                                <div class="col-md-6 form-group"><label class="form-label font-weight-bold small">Template ID</label>
+                                    <input placeholder="Template ID" type="text" class="form-control" formControlName="template_id">
+                                    <span class="text-danger"
+                                        *ngIf="(formcontrols.template_id.touched) && formcontrols.template_id.errors?.required">*
+                                        Template is Required</span>
+                                </div>
+                            </div>
+
+                            <div class="form-row mt-2">
+                                <div class="col-6 form-group">
+                                    <button type="submit" class="btn btn-success w-100" [disabled]="!contact_form.valid">  <i class="feather-save"></i>
+                                        Save</button>
+
+                                </div>
+                                <div class="col-6 form-group">
+                                    <a class="btn btn-primary w-100" routerLink="/sms-template" routerLinkActive="active">
+                                        <i class="feather-list"></i>
+                                        Back To List</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+

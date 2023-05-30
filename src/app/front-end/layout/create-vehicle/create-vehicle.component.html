@@ -1,0 +1,95 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        Create Vehicle
+                        <!-- <img src="{{base.adminAppUrl + '/uploads/apps/logo.png'}}" title="logo" class="text-center h-1-3rem mt-3"> -->
+                    </h4>
+                </div>
+                <app-sidebar [isDrawerOpen]="isDrawerOpen"
+                    (drawerToggleEmitter)="toggleNavDrawer($event)"></app-sidebar>
+
+            </div>
+        </div>
+        <div class="pl-3 pr-3">
+            <div class="bg-white rounded shadow mb-0 profile-details ">
+                <!-- <div class="modal-header">
+                    <h5 class="modal-title">Create User</h5>
+                </div> -->
+                <div class="m-3 pb-2 pt-2">
+                    <form [formGroup]="login_form" (ngSubmit)="on_submit()">
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label class="form-label font-weight-bold small">*Vehicle Type</label>
+                                <select class="custom-select form-control" placeholder="select"
+                                    formControlName="vehicle_type_id">
+                                    <option *ngFor="let type of vehicle_type" [value]="type.id">{{type.vehicle_type}}</option>
+                                </select>
+                                <span class="text-danger"
+                                    *ngIf="(formcontrols.vehicle_type_id.touched ) && formcontrols.vehicle_type_id.errors?.required">*Vehicle Type
+                                    is required</span>
+                            </div>
+                            <div class="col-md-6 form-group"><label
+                                    class="form-label font-weight-bold small">*Vehicle Name</label>
+                                <input placeholder="Enter Vehicle Name" type="text" class="form-control"
+                                    formControlName="vehicle_name">
+                                <span class="text-danger"
+                                    *ngIf="(formcontrols.vehicle_name.touched  ) && formcontrols.vehicle_name.errors?.required">*Vehicle Name
+                                    Required</span>
+                            </div>
+                            <div class="col-md-6 form-group"><label
+                                    class="form-label font-weight-bold small">*Vehicle number</label>
+                                <input placeholder="Enter Vehicle Number" type="number"
+                                    class="form-control spin-button" formControlName="vehicle_number">
+                                <span class="text-danger"
+                                    *ngIf="(formcontrols.vehicle_number.touched) && formcontrols.vehicle_number.errors?.required">*
+                                    Vehicle number is
+                                    Required</span>
+                            </div>
+
+                            <div class="col-md-6 form-group"><label
+                                class="form-label font-weight-bold small">*Mileage</label>
+                            <input placeholder="Enter Mileage(in Kilometers)" type="number"
+                                class="form-control spin-button" formControlName="mileage">
+                            <span class="text-danger"
+                                *ngIf="(formcontrols.mileage.touched) && formcontrols.mileage.errors?.required">*
+                                Mileage is
+                                Required</span>
+                            </div>
+
+                            <div class="col-md-6 form-group" hidden>
+                                <label class="form-label font-weight-bold small">*Unit</label>
+                                <input type="number" class="form-control spin-button" formControlName="unit">
+                            </div>
+                            
+                        
+                            
+
+                          
+                            
+                       
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="col-6 form-group">
+                                <button type="submit" class="btn btn-success w-100" [disabled]="!login_form.valid"> <i class="feather-save"></i>
+                                    Save</button>
+                            </div>
+                            <div class="col-6 form-group">
+                                <a class="btn btn-primary w-100" routerLink="/vehicle" routerLinkActive="active">
+                                    <i class="feather-list"></i>
+                                    Back To List</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

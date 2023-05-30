@@ -1,0 +1,153 @@
+<div class="coverImage">
+    <div class="login-page">
+        <div class="vh-100 p-4 mb-0">
+            <div class="text-center pb-3">
+                <img src="{{base.adminAppUrl}}/uploads/apps/logo.png" title="logo"
+                    class="text-center h-1-3rem mt-3 mb-2">
+            </div>
+            <form *ngIf="step==1" [formGroup]="fg_company" (ngSubmit)="onNextClick()" class="mt-2 mb-2">
+                <h6 class="text-white my-0 mt-4">Welcome to Insta Messanger</h6>
+                <p class="text-white text-50 mt-2">Fill up organization details</p>
+                <div class="form-group">
+                    <label for="exampleInputName1" class="text-white">Organization Name</label>
+                    <input type="text" placeholder="Enter Name" formControlName="name" class="form-control" id="name"
+                        aria-describedby="nameHelp">
+                    <span class="text-danger" *ngIf="(onChanged.name.touched || submitted) && onChanged.name.errors?.required">
+                        Organization Name is required
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputNumber1" class="text-white">Mobile Number</label>
+                    <input type="text" placeholder="Enter Mobile" formControlName="mobile" (keypress)="isMobileNumber($event)"
+                        maxlength="10" class="form-control" id="mobile" aria-describedby="numberHelp">
+                    <!-- <span class="text-danger" *ngIf="(onChanged.mobile.touched || submitted) && onChanged.mobile.errors?.required">
+                        mobile no is required
+                    </span> -->
+                    <span class="text-danger" *ngIf="onChanged.mobile.touched  && onChanged.mobile.errors?.pattern">
+                        Enter a valid mobile number
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="text-white">Email</label>
+                    <input type="email" placeholder="Enter Email" formControlName="email" class="form-control" id="email"
+                        aria-describedby="emailHelp">
+                    <!-- <span class="text-danger" *ngIf="(onChanged.email.touched || submitted) && onChanged.email.errors?.required">
+                        Email is required
+                    </span> -->
+                    <span class="text-danger" *ngIf="onChanged.email.touched && onChanged.email.errors?.pattern">
+                        Enter a valid email address
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="text-white">Address</label>
+                    <input type="text" placeholder="Enter Address" formControlName="address" class="form-control" id="address">
+                    <!-- <span class="text-danger"
+                        *ngIf="(onChanged.address.touched || submitted) && onChanged.address.errors?.required">
+                        Address is required</span> -->
+                </div>
+                <div class="form-group">
+                    <label for="city" class="text-white">City</label>
+                    <input type="text" placeholder="Enter city" formControlName="city" class="form-control" id="city">
+                    <!-- <span class="text-danger" *ngIf="(onChanged.city.touched || submitted) && onChanged.city.errors?.required">
+                        City is required</span> -->
+                </div>
+                <div class="form-group">
+                    <label for="state" class="text-white">State</label>
+                    <input type="text" placeholder="Enter state" formControlName="state" class="form-control" id="state">
+            
+                    <!-- <span class="text-danger" *ngIf="(onChanged.state.touched || submitted) && onChanged.state.errors?.required">
+                        State is required</span> -->
+                </div>
+                <!-- <span>{{response.message}}</span> -->
+                <button type="submit" (click)="onNextClick()" class="btn  btn-lg btn-block" style="color: #fff;
+                            background-color: #218838;
+                            border-color: #1e7e34" [disabled]="!fg_company.valid">NEXT</button>
+                            <!-- [disabled]="!fg_company.valid" -->
+                <div class="py-2"> </div>
+            </form>
+
+             <form *ngIf="step==2" [formGroup]="fg_user" (ngSubmit)="onGetOTPClick()" class="mt-2 mb-2">
+                <h6 class="text-white my-0 mt-4 mb-3">Authorized Person Details</h6>
+                <!-- <p class="text-white text-50 mt-2">Please sign-up to continue</p> -->
+                <div class="form-group">
+                    <label for="exampleInputName1" class="text-white">Name</label>
+                    <input type="text" placeholder="Enter Name" formControlName="name" class="form-control" id="name"
+                        aria-describedby="nameHelp">
+                    <span class="text-danger"
+                        *ngIf="(onChanged_fg_user.name.touched || submitted) && onChanged_fg_user.name.errors?.required">
+                        Name is required
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputNumber1" class="text-white">Mobile Number</label>
+                    <input type="text" placeholder="Enter Mobile" formControlName="mobile"
+                        (keypress)="isMobileNumber($event)" maxlength="10" class="form-control" id="mobile"
+                        aria-describedby="numberHelp">
+                    <span class="text-danger"
+                        *ngIf="(onChanged_fg_user.mobile.touched || submitted) && onChanged_fg_user.mobile.errors?.required">
+                        mobile no is required
+                    </span>
+                    <span class="text-danger" *ngIf="onChanged_fg_user.mobile.touched  && onChanged_fg_user.mobile.errors?.pattern">
+                        Enter a valid mobile number
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="text-white">Email</label>
+                    <input type="email" placeholder="Enter Email" formControlName="email" class="form-control" id="email"
+                        >
+                    <!-- <span class="text-danger"
+                        *ngIf="(onChanged_fg_user.email.touched || submitted) && onChanged_fg_user.email.errors?.required">
+                        Email is required
+                    </span> -->
+                    <span class="text-danger" *ngIf="onChanged_fg_user.email.touched && onChanged_fg_user.email.errors?.pattern">
+                        Enter a valid email address
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="text-white">Password</label>
+                    <input type="password" placeholder="Enter Password" formControlName="password" class="form-control" id="password">
+                    <span class="text-danger" *ngIf="(onChanged_fg_user.password.touched || submitted) && onChanged_fg_user.password.errors?.required">
+                        Password is required
+                    </span>
+                    <span class="text-danger" *ngIf="onChanged_fg_user.password.touched && onChanged_fg_user.password.errors?.pattern">
+                        Password must contain at least one number, one uppercase and a
+                        lowercase letter and at least 8 characters.Password cannot contain whitespace.
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="text-white">Address</label>
+                    <input type="text" placeholder="Enter Address" formControlName="address" class="form-control"
+                        id="address">
+                    <!-- <span class="text-danger"
+                        *ngIf="(onChanged_fg_user.address.touched || submitted) && onChanged_fg_user.address.errors?.required">
+                        Address is required</span> -->
+                </div>
+                <div class="form-group">
+                    <label for="city" class="text-white">City</label>
+                    <input type="text" placeholder="Enter city" formControlName="city" class="form-control" id="city">
+                    <!-- <span class="text-danger"
+                        *ngIf="(onChanged_fg_user.city.touched || submitted) && onChanged_fg_user.city.errors?.required">
+                        City is required</span> -->
+                </div>
+                <div class="form-group">
+                    <label for="state" class="text-white">State</label>
+                    <input type="text" placeholder="Enter state" formControlName="state" class="form-control"
+                        id="state">
+                    <!-- <span class="text-danger"
+                        *ngIf="(onChanged_fg_user.state.touched || submitted) && onChanged_fg_user.state.errors?.required">
+                        State is required</span> -->
+                </div>
+               
+                <!-- <span>{{response.message}}</span> -->
+                <button type="submit" class="btn  btn-lg btn-block" style="color: #fff;
+                background-color: #218838;
+                border-color: #1e7e34" [disabled]="!fg_user.valid">SIGN UP</button>
+                <div class="py-2"> </div>
+            </form> 
+            <div class="text-center mt-0 mb-5 pb-3">
+                <a class="mb-5" (click)="navigate()" class="text-white">Already have an account? Sign in
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

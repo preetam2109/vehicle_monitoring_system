@@ -1,0 +1,510 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        Profile
+                        <!-- <img src="{{base.adminAppUrl + '/uploads/apps/logo.png'}}" title="logo" class="text-center h-1-3rem mt-3"> -->
+                    </h4>
+                    <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)">
+                    </app-sidebar>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3  osahan-profile">
+            <div class="bg-white rounded shadow ">
+                <div class=" align-items-center border-bottom pt-3">
+                    <div style="width: 100%;" class="border-bottom">
+                        <div style="width: 100%;">
+                            <div style="width: 120px;height: 120px; margin: auto; padding: auto;position: relative;">
+                                <img src="{{base.userImgUrl}}/{{result.photo}}" class="rounded-circle  "
+                                    style="width:100%; height:100%; border:1px solid #dddddb ;">
+                                <button class="  btn-outline-light  " (click)="file.click()"
+                                    style="border-color: transparent;background-color:#dddddb;
+                           bottom:-5px; right: 10px; z-index: 999; position: absolute;border-radius: 50%; height: 30px; width: 30px; ">
+                                    <i class="feather-camera text-success " style="padding: 0;color: #3c3cfa;"></i>
+                                </button>
+                                <input name="thumbnail" id="thumbnail" type="file"
+                                    accept="image/png, image/jpeg, image/jpg" #file (change)="fileChangeEvent($event)"
+                                    style="display:none ;">
+                            </div>
+                        </div>
+                        <div style="width: 100%;">
+                            <h3 class="mb-3 mt-4 font-weight-bold text-center" style="margin: auto; padding: auto;">
+                                {{result.name}}
+                            </h3>
+                        </div>
+                    </div>
+                    <table class="table mb-0">
+                        <tr style="width:100%;">
+                            <td>
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <span class="m-0">Mobile Number:</span>
+                                        <span class="  p-3 font-weight-bold">{{result.mobile}}</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td style="width:60px;">
+                                <div class="input-group-append float-right ffa"><a id="button-addon2" type="button"
+                                        (click)="open_mobile_modal(1,modalDefault_modal)" data-toggle="modal"
+                                        data-target="#exampleModal" class=""><i
+                                            class="feather-edit text-success"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table mb-0">
+                        <tr style="width:100%;">
+                            <td>
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <span class="m-0">Email:</span>
+                                        <span class="ffa  font-weight-bold p-3 "> {{result.email}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="width:60px;">
+                                <div class="input-group-append float-right ffa"><a id="button-addon2" type="button"
+                                        (click)="open_mobile_modal(2,modalDefault_modal)" data-toggle="modal"
+                                        data-target="#exampleModal" class=""><i
+                                            class="feather-edit text-success"></i></a>
+                                </div>
+                            </td>
+
+
+                        </tr>
+                    </table>
+                    <!-- <table class="table mb-0">
+                        <tr style="width:100%;">
+                            <td>
+                                <div class="bg-white rounded  mt-0 profile-details">
+                                    <a type="button" data-toggle="modal" data-target="#delete_about"
+                                        class=" btn  d-flex w-100 align-items-center p-0">
+                                        <div class="left mr-3">
+                                            <h6 class="  font-weight-bold mb-1 text-dark">Delete Account</h6>
+                                        </div>
+                                        <div class="right ml-auto">
+                                            <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table> -->
+                </div>
+                <div class="bg-white rounded  mt-0 profile-details">
+                    <a type="button" data-toggle="modal" data-target="#paycard"
+                        class=" btn  d-flex w-100 align-items-center border-bottom p-3">
+                        <div class="left mr-3">
+                            <h6 class="  font-weight-bold mb-1 text-dark">Change Password</h6>
+                        </div>
+                        <div class="right ml-auto">
+                            <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="paycard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form [formGroup]="changePasswordForm">
+                            <div class="form-row">
+                                <div class="col-md-12 form-group">
+                                    <label class="form-label font-weight-bold small">Old Password</label>
+                                    <input placeholder="Enter Old Password" type="text" class="form-control"
+                                        formControlName="old_password" id="old_password">
+                                    <span class="text-danger"
+                                        *ngIf="(f.old_password.touched  ) && f.old_password.errors?.required">Password
+                                        Required</span>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label class="form-label font-weight-bold small">New Password</label>
+                                    <input placeholder="Enter New Password" type="password" class="form-control"
+                                        formControlName="new_password" id="new_password">
+                                    <span class="text-danger"
+                                        *ngIf="(f.new_password.touched  ) && f.new_password.errors?.required">Password
+                                        Required</span>
+
+                                    <span class="text-danger"
+                                        *ngIf="f.new_password.touched  && f.new_password.errors?.pattern">
+                                        Password must contain at least one number, one uppercase and a
+                                        lowercase letter and at least 8 characters.Password cannot
+                                        contain whitespace. </span>
+
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label class="form-label font-weight-bold small">Confirm Password</label>
+                                    <input placeholder="Enter Confirm Password" type="password" class="form-control"
+                                        formControlName="Confirm_password" id="Confirm_password">
+                                    <span class="text-danger"
+                                        *ngIf="(f.Confirm_password.touched  ) && f.Confirm_password.errors?.required">Confirm
+                                        Password
+                                        Required</span>
+                                    <div class="text-danger" *ngIf="f.Confirm_password.errors?.mustMatch">Password and
+                                        confirm password should be same.</div>
+
+
+                                    <!-- <span class="text-danger"
+                                        *ngIf="f.Confirm_password.touched  && f.Confirm_password.errors?.pattern">
+                                        Enter Valid Password</span> -->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer p-0 border-0">
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn border-top btn-lg btn-block"
+                                data-dismiss="modal">Close</button>
+                        </div>
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn btn-primary btn-lg btn-block"
+                                (click)="change_password()">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{is_edit_mobile== true ? 'Update Mobile Number' : 'Update Email ID'}} </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                 
+
+                    <div class="modal-body">
+                        <form class="" [formGroup]="changePasswordForm">
+                            <div class="form-row">
+
+                                <div class="col-md-12 form-group" [style]=" is_edit_mobile== true ? 'display:block' : 'display:none'">
+                                    <label class="form-label">Mobile Number
+                                    </label>
+                                    <input placeholder="Mobile Number" type='text' class="form-control" name="mobile_Number"
+                                     formControlName="mobile_Number" id="mobile_Number">
+                                     <span class="text-danger"
+                                     *ngIf="(f.mobile_Number.touched || submitted ) && f.mobile_Number.errors?.required">Mobile Number
+                                     Required</span>
+                                    
+                                     
+                                </div>
+                                <div class="col-md-12 form-group" [style]=" is_edit_mobile== false ? 'display:block' : 'display:none'">
+                                    <label class="form-label">Email
+                                    </label>
+                                    <input placeholder="Email" type='text' class="form-control" name="email"
+                                     formControlName="email" id="email">
+                                     <span class="text-danger"
+                                     *ngIf="(f.email.touched || submitted ) && f.email.errors?.required">Email is required</span>
+                                      <span class="text-danger"
+                                     *ngIf="(f.email.touched || submitted) && f.email.errors?.pattern">
+                                     Email must be a valid email address </span>
+                                </div>
+                                
+                                
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer p-0 border-0">
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn border-top btn-lg btn-block"
+                                data-dismiss="modal">Close</button>
+                        </div>
+                        <div class="col-6 m-0 p-0" >
+                            <button type="button" class="btn btn-primary btn-lg btn-block"  (click)='get_otp(modalDefault)' id="btnGetOtp"
+                            data-dismiss="modal">Get OTP</button>
+                                data-toggle="modal" data-target="#verifyotp" <div class="input-group-append float-right ffa"><a id="button-addon2" type="button"
+                                    data-toggle="modal" data-target="#exampleModal" class=""><i
+                                        class="feather-edit text-success"></i></a>
+                            </div> [disabled]="f.mobile_Number.valid === false"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  -->
+
+
+
+        <ng-template #modalDefault_modal let-modal class="modal  " style="z-index: 1040;" id="#modalDefault"
+            tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form [formGroup]="form_change_mobile" (ngSubmit)="get_otp(modalDefault)"
+                [style]=" is_edit_mobile== true ? 'display:block' : 'display:none'">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{is_edit_mobile== true ? 'Update Mobile Number' : 'Update Email ID'}} </h5>
+                            <button type="button" class="close" data-dismiss="modal"
+                                (click)="modal.dismiss('Cross click')" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="col-md-12 form-group"
+                                    [style]=" is_edit_mobile== true ? 'display:block' : 'display:none'">
+                                    <label class="form-label">Mobile Number
+                                    </label>
+                                    <input placeholder="Mobile Number" type='number' class="form-control spin-button" 
+                                        name="mobile_Number" formControlName="mobile_Number" id="mobile_Number">
+                                    <div
+                                        *ngIf="form_change_mobile.get('mobile_Number')?.invalid && 
+                                                 form_change_mobile.get('mobile_Number')?.errors && 
+                                                 (form_change_mobile.get('mobile_Number')?.dirty || form_change_mobile.get('mobile_Number')?.touched)">
+                                        <small class="text-danger"
+                                            *ngIf="form_change_mobile.get('mobile_Number')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+                                        <span class="text-danger" *ngIf="form_change_mobile.get('mobile_Number')?.errors?.pattern">
+                                            Enter 10 digit valid mobile number
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer p-0 border-0">
+                            <div class="col-6 m-0 p-0">
+                                <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal"
+                                    (click)="modal.dismiss('Cross click')">Close</button>
+                            </div>
+                            <div class="col-6 m-0 p-0">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" id="btnGetOtp"
+                                    data-dismiss="modal" [disabled]="!form_change_mobile.valid">Get OTP</button>
+                                <!--data-toggle="modal" data-target="#verifyotp" <div class="input-group-append float-right ffa"><a id="button-addon2" type="button"
+                                    data-toggle="modal" data-target="#exampleModal" class=""><i
+                                        class="feather-edit text-success"></i></a>
+                            </div> [disabled]="f.mobile_Number.valid === false"-->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <form [formGroup]="form_change_email" (ngSubmit)="get_otp(modalDefault)"
+                [style]=" is_edit_mobile== false ? 'display:block' : 'display:none'">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Update Email ID</h5>
+                            <button type="button" class="close" data-dismiss="modal"
+                                (click)="modal.dismiss('Cross click')" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="col-md-12 form-group">
+                                    <label class="form-label">Email ID
+                                    </label>
+                                    <input placeholder="Enter Email ID" type='text' class="form-control" name="email"
+                                        formControlName="email" id="email">
+                                    <div
+                                        *ngIf="form_change_email.get('email')?.invalid && 
+                                                                                 form_change_email.get('email')?.errors && 
+                                                    (form_change_email.get('email')?.dirty || form_change_email.get('email')?.touched)">
+                                        <small class="text-danger"
+                                            *ngIf="form_change_email.get('email')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+                                        <small class="text-danger"
+                                            *ngIf="form_change_email.get('email')?.touched && form_change_email.get('email')?.hasError('pattern')">
+                                            Enter a valid email address
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer p-0 border-0">
+                            <div class="col-6 m-0 p-0">
+                                <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal"
+                                    (click)="modal.dismiss('Cross click')">Close</button>
+                            </div>
+                            <div class="col-6 m-0 p-0">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" id="btnGetOtp"
+                                    data-dismiss="modal" [disabled]="!form_change_email.valid">Get OTP</button>
+                                <!--data-toggle="modal" data-target="#verifyotp" <div class="input-group-append float-right ffa"><a id="button-addon2" type="button"
+                                        data-toggle="modal" data-target="#exampleModal" class=""><i
+                                            class="feather-edit text-success"></i></a>
+                                </div> [disabled]="f.email.valid === false"-->
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </ng-template>
+
+
+        <ng-template #modalDefault let-modal class="modal  " style="z-index: 1040;" id="#modalDefault" tabindex="-1"
+            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="mb-1">Verify your phone number and Email</h2>
+
+                        <button type="button" class="close" style="border-color: user-select none;"
+                            (click)="modal.dismiss('Cross click')" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="osahan-verification">
+                            <form [formGroup]="changePasswordForm">
+                                <div class="verify_number p-4">
+                                    <h6 class="text-black-50">Enter your OTP code here</h6>
+                                    <div class="row my-5 mx-0" style="font-size: medium;">
+                                        <div class="col pr-1 pl-0">
+                                            <input #digit1 type="number" name="otp1" id="digit-1"
+                                                data-next="digit-2" style="color: rgb(10, 10, 10);"
+                                                formControlName="otp1" (keyup)="isOTP(digit1, $event, digit2, 1)"
+                                                autofocus autocomplete="off"
+                                                class="form-control form-control-lg spin-button" maxLength="1"
+                                                size="1">
+                                        </div>
+                                        <div class="col px-2">
+                                            <input #digit2 type="number" name="otp2" id="digit-2"
+                                                data-next="digit-3" autocomplete="off"
+                                                style="color: rgb(10, 10, 10);" data-previous="digit-1"
+                                                formControlName="otp2" (keyup)="isOTP(digit1, $event, digit3, 2)"
+                                                class="form-control form-control-lg spin-button" maxLength="1">
+                                        </div>
+                                        <div class="col px-2">
+                                            <input #digit3 type="number" name="otp3" id="digit-3"
+                                                data-next="digit-4" autocomplete="off" data-previous="digit-2"
+                                                formControlName="otp3" (keyup)="isOTP(digit2, $event, digit4, 3)"
+                                                class="form-control form-control-lg spin-button" maxLength="1"
+                                                style="color: rgb(10, 10, 10);">
+                                        </div>
+                                        <div class="col px-2">
+                                            <input #digit4 type="number" name="otp4" id="digit-4"
+                                                data-next="digit-5" autocomplete="off" data-previous="digit-3"
+                                                formControlName="otp4" (keyup)="isOTP(digit3, $event,digit5, 4)"
+                                                class="form-control form-control-lg spin-button" maxLength="1"
+                                                style="color: rgb(10, 10, 10);">
+                                        </div>
+                                        <div class="col px-2">
+                                            <input #digit5 type="number" name="otp5" id="digit-5"
+                                                data-next="digit-6" autocomplete="off" data-previous="digit-4"
+                                                formControlName="otp5" (keyup)="isOTP(digit4, $event,digit6, 5)"
+                                                class="form-control form-control-lg spin-button" maxLength="1"
+                                                style="color: rgb(10, 10, 10);">
+                                        </div>
+                                        <div class="col px-2 pr-0">
+                                            <input #digit6 type="number" name="otp6" id="digit-6"
+                                                data-previous="digit-5" autocomplete="off" formControlName="otp6"
+                                                (keyup)="isOTP(digit5, $event, digit6, 6)"
+                                                class="form-control form-control-lg spin-button" maxLength="1"
+                                                style="color: rgb(10, 10, 10);">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer p-0 border-0">
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal"
+                                (click)="modal.dismiss('Cross click')">Close</button>
+                        </div>
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn btn-primary btn-lg btn-block"
+                                (click)="otpValidate(modalDefault)">Verify Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+       <!-- <div class="modal fade" id="delete_about" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <form [formGroup]="user_delete_form" (ngSubmit)="user_delete_account()">
+    
+            <div class="modal-dialog">
+                <div class="modal-content">
+    
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Account </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+    
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label font-weight-bold small">Why do you want to delete your
+                                        Account</label>
+                                    <textarea placeholder="" type="text" class="form-control"
+                                        formControlName="delete_remark" id="delete_remark"></textarea>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-row">
+                            <div class="col-12">
+                                <div class="form-group">
+    
+                                    <label class="form-label font-weight-bold small">Enter password to delete your
+                                        account</label>
+                                    <input placeholder="Password" type="password" class="form-control"
+                                        formControlName="Password" id="captcha">
+                                    <span class="text-danger"
+                                        *ngIf="(delete_user.Password.touched || submitted ) && delete_user.Password.errors?.required">
+                                        Required</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="modal-footer p-0 border-0">
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn border-top btn-lg btn-block"
+                                data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col-6 m-0 p-0">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block"
+                            [disabled]="!user_delete_form.valid">Submit</button>
+                             (click)="user_delete_account()"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+         </div>  -->
+         <app-footer></app-footer>
+</div>
+
+
+
+

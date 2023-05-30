@@ -1,0 +1,102 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        Create User
+                        <!-- <img src="{{base.adminAppUrl + '/uploads/apps/logo.png'}}" title="logo" class="text-center h-1-3rem mt-3"> -->
+                    </h4>
+                </div>
+                <app-sidebar [isDrawerOpen]="isDrawerOpen"
+                    (drawerToggleEmitter)="toggleNavDrawer($event)"></app-sidebar>
+
+            </div>
+        </div>
+        <div class="pl-3 pr-3">
+            <div class="bg-white rounded shadow mb-0 profile-details ">
+                <!-- <div class="modal-header">
+                    <h5 class="modal-title">Create User</h5>
+                </div> -->
+                <div class="m-3 pb-2 pt-2">
+                    <form [formGroup]="login_form" (ngSubmit)="on_submit()">
+                        <div class="form-row">
+                            <div class="col-md-6 form-group"><label
+                                    class="form-label font-weight-bold small">*Name</label>
+                                <input placeholder="Enter Employee Name" type="text" class="form-control"
+                                    formControlName="name">
+                                <span class="text-danger"
+                                    *ngIf="(formcontrols.name.touched  ) && formcontrols.name.errors?.required">*Name
+                                    Required</span>
+                            </div>
+                            <div class="col-md-6 form-group"><label
+                                    class="form-label font-weight-bold small">*Mobile</label>
+                                <input placeholder="Enter Mobile Number" type="number" maxLenght="10"
+                                    class="form-control spin-button" formControlName="mobile">
+                                <span class="text-danger"
+                                    *ngIf="(formcontrols.mobile.touched) && formcontrols.mobile.errors?.required">*
+                                    Mobile number is
+                                    Required</span>
+                                <span class="text-danger" *ngIf="formcontrols.mobile.errors?.pattern">*Please enter 10
+                                    digit mobile number
+                                </span>
+                            </div>
+                            <div class="col-md-6 form-group"><label
+                                    class="form-label font-weight-bold small">Email</label>
+                                <input placeholder="Enter Employee Email" type="text" class="form-control"
+                                    formControlName="email">
+                                <span class="text-danger" *ngIf="formcontrols.email.errors?.pattern">
+                                    Enter a valid email address
+                                </span>
+                                <!-- <span class="text-danger"
+                                        *ngIf="(formcontrols.email.touched || submitted ) && formcontrols.email.errors?.pattern">Email is
+                                        invalid</span> -->
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label class="form-label font-weight-bold small">*Role</label>
+                                <select class="custom-select form-control" placeholder="select"
+                                    formControlName="role_id">
+                                    <option *ngFor="let role of mst_role" [value]="role.role_id">{{role.role}}</option>
+                                </select>
+                                <span class="text-danger"
+                                    *ngIf="(formcontrols.role_id.touched ) && formcontrols.role_id.errors?.required">*Role
+                                    is required</span>
+                            </div>
+                            <div class="col-md-6 form-group"><label
+                                    class="form-label font-weight-bold small">City</label>
+                                <input placeholder="Enter City Name" type="text" class="form-control"
+                                    formControlName="city">
+                            </div>
+                            <div class="col-md-6 form-group"><label
+                                    class="form-label font-weight-bold small">State</label>
+                                <select class="custom-select form-control" placeholder="Select State"
+                                    formControlName="state">
+
+                                    <option *ngFor="let state of mst_states" [value]=state.state_en>
+                                        {{state.state_en}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="col-6 form-group">
+                                <button type="submit" class="btn btn-success w-100" [disabled]="!login_form.valid"> <i class="feather-save"></i>
+                                    Save</button>
+                            </div>
+                            <div class="col-6 form-group">
+                                <a class="btn btn-primary w-100" routerLink="/employees" routerLinkActive="active">
+                                    <i class="feather-list"></i>
+                                    Back To List</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
