@@ -32,7 +32,6 @@ export class VehicleTypeCreateComponent implements OnInit {
     })
   }
     ngOnInit(): void {
-    debugger
     let id = null;
     var vehicle_type =undefined;
     this.route.queryParamMap.subscribe((params) => {

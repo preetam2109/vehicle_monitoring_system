@@ -54,8 +54,8 @@ export class VehicleTypeComponent implements OnInit {
 
   onSearch(event: any) {
     const val = event.target.value.toLowerCase();
-    this.res_data_filter = this.res_data.filter(function (d: { name: string; }) {
-      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    this.res_data_filter = this.res_data.filter(function (d: { vehicle_type: string; }) {
+      return d.vehicle_type.toLowerCase().indexOf(val) !== -1 || !val;
     });
   }
 

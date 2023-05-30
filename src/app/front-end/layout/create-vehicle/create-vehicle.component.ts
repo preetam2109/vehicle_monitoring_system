@@ -59,35 +59,15 @@ export class CreateVehicleComponent implements OnInit {
         vehicle_type_id: params['vt'],
         vehicle_name: params['vname'],
         vehicle_number: params['vnum'],
-        mileage:params['mileage']
+        mileage:params['mileage'],
+        id:params['id'],
       });
+      
     });
+    
   }
-  
-  // fetchVehicleDetails(user_id: any) {
-  //   this.baseServiceService.get(`vehicle?entity_id=${user_id}`)
-  //     .subscribe(
-  //       (res: any) => {
-  //         if (res.status === 'success') {
-  //           const vehicleDetails = res.data; 
-  //           // alert(JSON.stringify(vehicleDetails))
-  //           this.login_form.patchValue({
-  //             vehicle_type_id: vehicleDetails.vehicle_type_id,
-  //             vehicle_name: vehicleDetails.vehicle_name,
-  //             vehicle_number: vehicleDetails.vehicle_number,
-  //             mileage: vehicleDetails.mileage,
-             
-  //           });
-  //         } else {
-  //           this.toastr.error(res.message, 'Error!');
-  //         }
-  //       },
-  //       error => {
-  //         this.toastr.error(error.message, 'Error!');
-  //       }
-  //     );
-  // }
-  
+
+
   toggleNavDrawer(isDrawerOpen: boolean) {
     this.isDrawerOpen = isDrawerOpen;
     this.drawerToggleEmitter.emit(this.isDrawerOpen);
@@ -111,19 +91,31 @@ export class CreateVehicleComponent implements OnInit {
 
 
   onChange(files: any) {
+    
     this.filedata = files.target.files[0];
   }
   on_submit() {
+    debugger
+    debugger
     if(this.login_form.valid){
       this.baseServiceService.post('vehicle', this.login_form.value )
       .subscribe(
         (res:any) => {
           if(res.status=="success"){    
           this.toastr.success(res.message, 'Success!');
-          this.login_form.reset();}        
-          else
-          this.toastr.success(res.message, 'Success!');
-        },(error) => {throw error }
+          if(this.login_form.value.id==''||this.login_form.value.id==null)
+          this.login_form.reset();
+        
+        }        
+          
+        if(res.status=="error"){    
+          this.toastr.error(res.message, 'Error!');
+
+        }
+        }
+        
+        
+        ,(error) => {throw error }
      
       );
    

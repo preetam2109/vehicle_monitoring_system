@@ -18,7 +18,7 @@ export class EmployeesComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private bs: BaseServiceService, private router: Router) {
     this.base = Base; this.dt = dt_properties;
   }
-  ngOnInit = () => this.onGet();
+  ngOnInit(){this.onGet();}
 
   onGet(){ 
     this.bs.get('employee')

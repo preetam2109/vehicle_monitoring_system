@@ -82,7 +82,7 @@ export class EmployeeCreateUpdateComponent implements OnInit {
     this.baseServiceService.get(api_url).subscribe(
       (res: any) => {
         if (res.status == 'success') {
-          this.mst_role = res.data.vehicle_type;
+          this.mst_role = res.data.roles;
           this.mst_states = res.data.states;
           if (user_id != null)
             this.login_form.patchValue(res.data.entity_data[0]);
