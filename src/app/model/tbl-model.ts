@@ -28,6 +28,21 @@ export class tbl_vehicle_type{
   update_by: number | undefined;
   update_date: Date | undefined
 }
+export class tbl_travel{
+  
+    id: number | undefined;
+    travel_date: Date | undefined;
+    distance: number | undefined;
+    meter_start: number | undefined;
+    meter_end: number | undefined;
+    vehicle_type: string | undefined;
+    vehicle_name: string | undefined;
+    vehicle_number: number | undefined;
+    mileage: number | undefined;
+    unit: number | undefined;
+    create_by: string | undefined;
+  
+}
 
 //#endregin
 

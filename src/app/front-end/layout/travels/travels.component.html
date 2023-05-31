@@ -1,0 +1,78 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 id="page_title" class="font-weight-bold m-0 pl-5">
+                        Travels
+                    </h4>
+                </div>
+                <app-sidebar [isDrawerOpen]="isDrawerOpen"
+                    (drawerToggleEmitter)="toggleNavDrawer($event)"></app-sidebar>
+            </div>
+        </div>
+        <section class=" pt-3 pb-2">
+            <div class="col-md-10 col-12 justify-content-md-end float-right ">
+                <a class="btn  btn-success  float-right text-white " [routerLink]="['/create-travel']"
+                    [routerLinkActive]="['active']">
+                    <img class="" src="../../.././../assets/img/plus icon.svg" style="height:20px;" />
+                </a>
+                <a csvLink [data]="res_data_filter" class="btn btn-light text-dark float-right mr-1" rippleEffect>
+                    <img src="../../.././../assets/img/sheet.svg" alt="" style="height:20px;"></a>
+                <a class="btn  float-right btn-light  mr-1 ml-1" (click)="onDownload_PDF()">
+                    <img class=" mr-0 mr-sm-1" src="../../.././../assets/img/pdf.svg" alt="" style="height:20px;"></a>
+                <label class="d-flex align-items-center float-right pr-0">
+                    <input type="search" placeholder="Search" class="form-control" (keyup)="onSearch($event)" /></label>
+            </div>
+            <div class="ml-0 pl-0 col-md-2 d-none-md px-3">
+                <label class="d-flex align-items-center">Show&nbsp;
+                    <select class="form-control" style="width:auto" [(ngModel)]="dt.limit">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    &nbsp;entries</label>
+            </div>
+            <div class="px-3">
+                <ngx-datatable id="datatable" [rows]="res_data_filter"
+                    class="no-detail-row  bootstrap thead-light expandable  table table-bordered" [limit]="dt.limit"
+                    [columnMode]="dt.columnMode" [headerHeight]="dt.headerHeight" [rowHeight]="dt.rowHeight"
+                    [footerHeight]="dt.footerHeight" [scrollbarH]="dt.scrollbarH" [virtualization]="dt.virtualization">
+                    <ngx-datatable-column name="#" [width]="50" [sortable]="false" [canAutoResize]="false"
+                        [draggable]="false" [resizeable]="false">
+                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                            {{rowIndex+1}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Vehicle name" prop="vehicle_name" [width]="100"></ngx-datatable-column>
+                    <ngx-datatable-column name="Vehicle number" prop="vehicle_number" [width]="200"></ngx-datatable-column>
+                    <ngx-datatable-column name="Vehicle type" prop="vehicle_type" [width]="100"></ngx-datatable-column>
+                    <ngx-datatable-column name="Distance(km)" prop="distance"></ngx-datatable-column>
+                    <ngx-datatable-column name="Travel Date" prop="travel_date" [width]="200">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                          {{ row.travel_date | date:'yyyy-MM-dd hh:mm a '}} 
+                        </ng-template>
+                      </ngx-datatable-column>
+                      
+                   
+                    <ngx-datatable-column name="Created By" prop="create_by" [width]="100"></ngx-datatable-column>
+
+                    <ngx-datatable-column name="Actions" prop="id" [sortable]="false" [width]="50">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            <a role="button" class="mr-3" (click)="onDelete(row.id)"> <i
+                                    class="feather-trash text-danger"></i></a>
+                            <a role="button" class="mr-3" (click)="onEdit(row)"> <i
+                                    class="feather-edit text-success"></i></a>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </section>
+    </div>
+    <app-footer></app-footer>
+</div>

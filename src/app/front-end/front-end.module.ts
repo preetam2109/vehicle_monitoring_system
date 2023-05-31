@@ -35,6 +35,8 @@ import { VehicleTypeComponent } from './layout/vehicle-type/vehicle-type.compone
 import{VehicleTypeCreateComponent} from './layout/vehicle-type-create/vehicle-type-create.component';
 import {CreateVehicleComponent} from './layout/create-vehicle/create-vehicle.component';
 import { VehicleComponent } from './layout/vehicle/vehicle.component';
+import { TravelsComponent } from './layout/travels/travels.component';
+import { CreateTravelComponent } from './layout/create-travel/create-travel.component';
 const routes: Routes = [
   {
     path: '',
@@ -133,7 +135,14 @@ const routes: Routes = [
       },
       {
         path:'vehicle',component:VehicleComponent
+      },
+      {
+        path:'travels',component:TravelsComponent
+      },
+      {
+        path:'create-travel',component:CreateTravelComponent
       }
+
     ]
   },
 
@@ -158,7 +167,7 @@ const routes: Routes = [
     EmployeesComponent,
     ApiSettingsComponent,
     EmployeeCreateUpdateComponent,
-    VehicleTypeCreateComponent,VehicleTypeComponent, VehicleComponent,CreateVehicleComponent
+    VehicleTypeCreateComponent,VehicleTypeComponent, VehicleComponent,CreateVehicleComponent, TravelsComponent, CreateTravelComponent
 
   ],
   imports: [
