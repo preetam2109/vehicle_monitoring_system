@@ -43,7 +43,7 @@ export class CreateFuelRefillingComponent implements OnInit {
     this.login_form = this.formBuilder.group({
       id:[''],
       vehicle_id: ['',[Validators.required]],
-      refilling_date: [''],
+      refilling_date: ['',new Date()],
       quantity:['',[Validators.required]],
       fuel_station: ['',[Validators.maxLength(100)]],
       station_address: ['',[Validators.maxLength(100)]],

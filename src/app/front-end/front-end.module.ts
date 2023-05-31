@@ -37,8 +37,8 @@ import {CreateVehicleComponent} from './layout/create-vehicle/create-vehicle.com
 import { VehicleComponent } from './layout/vehicle/vehicle.component';
 import { TravelsComponent } from './layout/travels/travels.component';
 import { CreateTravelComponent } from './layout/create-travel/create-travel.component';
-import { FuelRefillingComponent } from '../fuel-refilling/fuel-refilling.component';
-import { CreateFuelRefillingComponent } from '../create-fuel-refilling/create-fuel-refilling.component';
+import { CreateFuelRefillingComponent } from './layout/create-fuel-refilling/create-fuel-refilling.component';
+import { FuelRefillingComponent } from './layout/fuel-refilling/fuel-refilling.component';
 const routes: Routes = [
   {
     path: '',
@@ -175,7 +175,9 @@ const routes: Routes = [
     EmployeesComponent,
     ApiSettingsComponent,
     EmployeeCreateUpdateComponent,
-    VehicleTypeCreateComponent,VehicleTypeComponent, VehicleComponent,CreateVehicleComponent, TravelsComponent, CreateTravelComponent
+    VehicleTypeCreateComponent,
+    VehicleTypeComponent, VehicleComponent,CreateVehicleComponent, 
+    TravelsComponent, CreateTravelComponent,CreateFuelRefillingComponent,FuelRefillingComponent
 
   ],
   imports: [

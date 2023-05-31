@@ -29,6 +29,7 @@
                                 <label class="form-label font-weight-bold small">Vehicle*</label>
                                 <select class="custom-select form-control" placeholder="select"
                                     formControlName="vehicle_id">
+                                    <option value="" selected>-- Select --</option> 
                                     <option *ngFor="let type of vehicle_name" [value]="type.id">{{type.vehicle_name}}</option>
                                 </select>
                                 <span class="text-danger"
@@ -37,7 +38,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label class="form-label font-weight-bold small">Refilling Date*</label>
-                                <input placeholder="Enter refilling_date" type="date" class="form-control" formControlName="refilling_date">
+                                <input placeholder="Enter refilling_date" type="datetime-local" class="form-control" formControlName="refilling_date">
                                 <span class="text-danger" *ngIf="formcontrols.refilling_date.invalid && formcontrols.refilling_date.touched">
                                   * Refilling Date is Required
                                 </span>
