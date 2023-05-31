@@ -1,0 +1,82 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        Create Fuel Refilling
+                        <!-- <img src="{{base.adminAppUrl + '/uploads/apps/logo.png'}}" title="logo" class="text-center h-1-3rem mt-3"> -->
+                    </h4>
+                </div>
+                <app-sidebar [isDrawerOpen]="isDrawerOpen"
+                    (drawerToggleEmitter)="toggleNavDrawer($event)"></app-sidebar>
+
+            </div>
+        </div>
+        <div class="pl-3 pr-3">
+            <div class="bg-white rounded shadow mb-0 profile-details ">
+                <!-- <div class="modal-header">
+                    <h5 class="modal-title">Create User</h5>
+                </div> -->
+                <div class="m-3 pb-2 pt-2">
+                    <form [formGroup]="login_form" (ngSubmit)="on_submit()">
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label class="form-label font-weight-bold small">Vehicle*</label>
+                                <select class="custom-select form-control" placeholder="select"
+                                    formControlName="vehicle_id">
+                                    <option *ngFor="let type of vehicle_name" [value]="type.id">{{type.vehicle_name}}</option>
+                                </select>
+                                <span class="text-danger"
+                                    *ngIf="(formcontrols.vehicle_id.touched ) && formcontrols.vehicle_id.errors?.required">*Vehicle Name
+                                    is required</span>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="form-label font-weight-bold small">Refilling Date*</label>
+                                <input placeholder="Enter refilling_date" type="date" class="form-control" formControlName="refilling_date">
+                                <span class="text-danger" *ngIf="formcontrols.refilling_date.invalid && formcontrols.refilling_date.touched">
+                                  * Refilling Date is Required
+                                </span>
+                              </div>
+                            
+                            <div class="col-md-6 form-group"><label
+                                    class="form-label font-weight-bold small">Quantity*</label>
+                                <input placeholder="Enter Quantity" type="text" class="form-control"
+                                    formControlName="quantity">
+                                <span class="text-danger"
+                                    *ngIf="(formcontrols.quantity.touched  ) && formcontrols.quantity.errors?.required">*Quantity is 
+                                    Required</span>
+                            </div>
+                            <div class="col-md-6 form-group"><label
+                                class="form-label font-weight-bold small">Fuel station</label>
+                            <input placeholder="Enter Fuel station" type="text" class="form-control"
+                                formControlName="fuel_station">
+                        </div>
+                            <div class="col-md-12 form-group">
+                                <label class="form-label font-weight-bold small">Station Address</label>
+                                <input placeholder="Enter Station address" type="text" class="form-control" formControlName="station_address">
+                            </div>
+                            
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="col-6 form-group">
+                                <button type="submit" class="btn btn-success w-100" [disabled]="!login_form.valid"> <i class="feather-save"></i>
+                                    Save</button>
+                            </div>
+                            <div class="col-6 form-group">
+                                <a class="btn btn-primary w-100" routerLink="/fuel-refilling" routerLinkActive="active">
+                                    <i class="feather-list"></i>
+                                    Back To List</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

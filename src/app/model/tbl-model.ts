@@ -43,6 +43,20 @@ export class tbl_travel{
     create_by: string | undefined;
   
 }
+export class tbl_fuel_refilling{
+
+  id: number | undefined
+  vehicle_id: number | undefined
+  refilling_date: Date | undefined;
+  quantity: number | undefined
+  fuel_station: string | undefined
+  station_address: string | undefined
+  status: number | undefined;
+  create_by: number | undefined;
+  create_date: Date | undefined;
+  update_by: number | undefined;
+  update_date: Date | undefined;
+}
 
 //#endregin
 

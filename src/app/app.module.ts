@@ -31,6 +31,8 @@ import { FourZeroFourComponent } from './authentication/error/four-zero-four/fou
 import { GlobalErrorHandlerService } from './helper/global-error-handler.service';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FuelRefillingComponent } from './fuel-refilling/fuel-refilling.component';
+import { CreateFuelRefillingComponent } from './create-fuel-refilling/create-fuel-refilling.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +46,9 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
         LoginWithOtpComponent,
         SplashComponent,
         FourZeroFourComponent,
-        ContactUsComponent
+        ContactUsComponent,
+        FuelRefillingComponent,
+        CreateFuelRefillingComponent
     ],
     exports: [NgSelectModule,],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
