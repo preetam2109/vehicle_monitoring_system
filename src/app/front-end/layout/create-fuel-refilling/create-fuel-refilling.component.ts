@@ -20,10 +20,7 @@ import { tap } from 'rxjs/operators';
 })
 export class CreateFuelRefillingComponent implements OnInit {
   login_form: FormGroup;
-  res_data: tbl_fuel_refilling = new tbl_fuel_refilling();
-  vehicle_id:any
-  vehicle_name:any
-  
+  res_data: any;
   isDrawerOpen = false;
   @Output()
   base: any;
@@ -81,12 +78,11 @@ export class CreateFuelRefillingComponent implements OnInit {
   }
 
   onGet(){ 
-    this.baseServiceService.get('fuel_refilling')
+    this.baseServiceService.get('fuel_refilling/form_data_get')
     .subscribe(
       (res: any) => {
         if (res.status == 'success') {
-          this.vehicle_name= res.data.entity_data;
-          // console.log(this.vehicle_name)
+          this.res_data = res.data;
         }
         else this.toastr.error(res.message, 'Error!');
       }

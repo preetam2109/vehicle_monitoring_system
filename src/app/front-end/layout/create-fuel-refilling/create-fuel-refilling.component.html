@@ -30,7 +30,7 @@
                                 <select class="custom-select form-control" placeholder="select"
                                     formControlName="vehicle_id">
                                     <option value="" selected>-- Select --</option> 
-                                    <option *ngFor="let type of vehicle_name" [value]="type.id">{{type.vehicle_name}}</option>
+                                    <option *ngFor="let type of res_data.vehicle" [value]="type.id">{{type.vehicle_number +' (' + type.vehicle_name + ')'}}</option>
                                 </select>
                                 <span class="text-danger"
                                     *ngIf="(formcontrols.vehicle_id.touched ) && formcontrols.vehicle_id.errors?.required">*Vehicle Name
@@ -46,7 +46,7 @@
                             
                             <div class="col-md-6 form-group"><label
                                     class="form-label font-weight-bold small">Quantity*</label>
-                                <input placeholder="Enter Quantity" type="text" class="form-control"
+                                <input placeholder="Enter Quantity" type="number" class="form-control"
                                     formControlName="quantity">
                                 <span class="text-danger"
                                     *ngIf="(formcontrols.quantity.touched  ) && formcontrols.quantity.errors?.required">*Quantity is 

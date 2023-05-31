@@ -21,7 +21,7 @@ import { tap } from 'rxjs/operators';
 })
 export class CreateTravelComponent implements OnInit {
   login_form: FormGroup;
-  res_data: tbl_travel = new tbl_travel();
+  res_data: any;
   vehicle_name:any
   
   isDrawerOpen = false;
@@ -45,7 +45,7 @@ export class CreateTravelComponent implements OnInit {
       vehicle_number: [''],
       vehicle_type:[''],
       distance: ['',[Validators.required,]],
-      travel_date:[''],
+      travel_date:['',new Date()],
       create_by:[''],
       meter_start:['0'],
       meter_end:['0'],
@@ -86,12 +86,12 @@ export class CreateTravelComponent implements OnInit {
   }
 
   onGet(){ 
-    this.baseServiceService.get('travels')
+    this.baseServiceService.get('travels/form_data_get')
     .subscribe(
       (res: any) => {
         if (res.status == 'success') {
-          this.vehicle_name= res.data.entity_data;
-          console.log(this.vehicle_name)
+          this.res_data = res.data;
+          // console.log(this.vehicle_name)
         }
         else this.toastr.error(res.message, 'Error!');
       }

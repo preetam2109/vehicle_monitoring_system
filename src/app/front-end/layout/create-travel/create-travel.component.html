@@ -29,7 +29,9 @@
                                 <label class="form-label font-weight-bold small">Vehicle*</label>
                                 <select class="custom-select form-control" placeholder="select"
                                     formControlName="vehicle_id">
-                                    <option *ngFor="let type of vehicle_name" [value]="type.id">{{type.vehicle_name}}</option>
+                                    <option value="" selected>-- Select --</option> 
+
+                                    <option *ngFor="let type of res_data.vehicle" [value]="type.id">{{type.vehicle_number +' (' + type.vehicle_name + ')'}}</option>
                                 </select>
                                 <span class="text-danger"
                                     *ngIf="(formcontrols.vehicle_id.touched ) && formcontrols.vehicle_id.errors?.required">*Vehicle Name
@@ -37,7 +39,7 @@
                             </div>
                             <div class="col-md-6 form-group"><label
                                     class="form-label font-weight-bold small">Travel Distance*(in km)</label>
-                                <input placeholder="Enter total distance" type="text" class="form-control"
+                                <input placeholder="Enter total distance" type="number" class="form-control"
                                     formControlName="distance">
                                 <span class="text-danger"
                                     *ngIf="(formcontrols.distance.touched  ) && formcontrols.distance.errors?.required">*Distance is 
@@ -45,7 +47,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label class="form-label font-weight-bold small">Travel Date*</label>
-                                <input placeholder="Enter travel date" type="date" class="form-control" formControlName="travel_date">
+                                <input placeholder="Enter travel date" type="datetime-local" class="form-control" formControlName="travel_date">
                                 <span class="text-danger" *ngIf="formcontrols.travel_date.invalid && formcontrols.travel_date.touched">
                                   * Travel Date is Required
                                 </span>

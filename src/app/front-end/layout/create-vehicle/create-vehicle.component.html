@@ -29,6 +29,7 @@
                                 <label class="form-label font-weight-bold small">*Vehicle Type</label>
                                 <select class="custom-select form-control" placeholder="select"
                                     formControlName="vehicle_type_id">
+                                    <option value="" selected>-- Select --</option> 
                                     <option *ngFor="let type of vehicle_type" [value]="type.id">{{type.vehicle_type}}</option>
                                 </select>
                                 <span class="text-danger"

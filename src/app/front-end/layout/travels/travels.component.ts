@@ -30,8 +30,8 @@ export class TravelsComponent implements OnInit {
     .subscribe(
       (res: any) => {
         if (res.status == 'success') {
-          this.res_data = res.data.entity_data;
           this.res_data_filter = res.data.entity_data;
+          this.res_data = res.data.entity_data;
         }
         else this.toastr.error(res.message, 'Error!');
       }
@@ -56,7 +56,9 @@ export class TravelsComponent implements OnInit {
               if (res.status == 'success') {
                 let index: number = this.res_data_filter.findIndex(a => a.id == entity_id);
                 if (index != -1) {
-                  this.res_data.splice(index, 1); this.res_data = [...this.res_data]; this.toastr.success(res.message, 'Success!');
+                  this.res_data.splice(index, 1); 
+                  this.res_data=[...this.res_data]; 
+                  this.toastr.success(res.message, 'Success!');
                 }
               }
               else this.toastr.error(res.message, 'Error!');
