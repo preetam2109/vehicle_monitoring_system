@@ -96,8 +96,6 @@ export class CreateFuelRefillingComponent implements OnInit {
     this.filedata = files.target.files[0];
   }
   on_submit() {
-    debugger
-    debugger
     if(this.login_form.valid){
       this.baseServiceService.post('fuel_refilling', this.login_form.value )
       .subscribe(

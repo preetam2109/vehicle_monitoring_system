@@ -22,7 +22,7 @@ export class FooterComponent implements OnInit {
   }
 
   sms_send(){
-    this.router.navigateByUrl("sms-send");
+    this.router.navigateByUrl("fuel-refilling");
   }
   check_login() {
     if (localStorage.getItem("ltn")) {
@@ -47,7 +47,7 @@ export class FooterComponent implements OnInit {
   }
 
   whatsapp_send(){
-    this.router.navigateByUrl("whatsapp-send");
+    this.router.navigateByUrl("travels");
   }
   
   addToCart() {

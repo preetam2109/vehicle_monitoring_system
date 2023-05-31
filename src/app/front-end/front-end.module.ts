@@ -125,30 +125,47 @@ const routes: Routes = [
         data: { roles: [tbl_roles.Super_Admin, tbl_roles.Admin] }
       },
       {
-        path:'vehicle-type',component:VehicleTypeComponent
+        path:'vehicle-type',component:VehicleTypeComponent,
+        canActivate: [AuthenticationGuard],
+        data: { roles: [tbl_roles.Super_Admin, tbl_roles.Admin, tbl_roles.Operator] }
+      },
+      {
+        path:'vehicle-type-create',component:VehicleTypeCreateComponent,
+        canActivate: [AuthenticationGuard],
+        data: { roles: [tbl_roles.Super_Admin, tbl_roles.Admin] }
       },
       {
 
-        path:'vehicle-type-create',component:VehicleTypeCreateComponent
+        path:'create-vehicle',component:CreateVehicleComponent,
+        canActivate: [AuthenticationGuard],
+        data: { roles: [tbl_roles.Super_Admin, tbl_roles.Admin] }
       },
       {
+        path:'vehicle',component:VehicleComponent,
+        canActivate: [AuthenticationGuard],
+        data: { roles: [tbl_roles.Super_Admin, tbl_roles.Admin, tbl_roles.Operator] }
+      },
+      {
+        path:'travels',component:TravelsComponent,
+        canActivate: [AuthenticationGuard],
+        data: { roles: [tbl_roles.Super_Admin, tbl_roles.Admin, tbl_roles.Operator] }
+      },
+      {
+        path:'create-travel',component:CreateTravelComponent,
+        canActivate: [AuthenticationGuard],
+        data: { roles: [tbl_roles.Super_Admin, tbl_roles.Admin, tbl_roles.Operator] }
+        
 
-        path:'create-vehicle',component:CreateVehicleComponent
       },
       {
-        path:'vehicle',component:VehicleComponent
+        path:'fuel-refilling',component:FuelRefillingComponent,
+        canActivate: [AuthenticationGuard],
+        data: { roles: [tbl_roles.Super_Admin, tbl_roles.Admin, tbl_roles.Operator] }
       },
       {
-        path:'travels',component:TravelsComponent
-      },
-      {
-        path:'create-travel',component:CreateTravelComponent
-      },
-      {
-        path:'fuel-refilling',component:FuelRefillingComponent
-      },
-      {
-        path:'create-fuel-refilling',component:CreateFuelRefillingComponent
+        path:'create-fuel-refilling',component:CreateFuelRefillingComponent,
+        canActivate: [AuthenticationGuard],
+        data: { roles: [tbl_roles.Super_Admin, tbl_roles.Admin, tbl_roles.Operator] }
       }
 
     ]
