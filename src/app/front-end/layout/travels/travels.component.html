@@ -55,7 +55,7 @@
                     <ngx-datatable-column name="Distance(km)" prop="distance"></ngx-datatable-column>
                     <ngx-datatable-column name="Travel Date" prop="travel_date" [width]="200">
                         <ng-template let-row="row" ngx-datatable-cell-template>
-                          {{ row.travel_date | date:'yyyy-MM-dd hh:mm a '}} 
+                          {{ row.travel_date | date:'yyyy-MM-dd hh:mm '}} 
                         </ng-template>
                       </ngx-datatable-column>
                       
